@@ -135,8 +135,7 @@ Use the getLastReview function below to do the following:
 
 function getLastReview(array) {
   return getReviewByIndex(array, array.length-1);
-} 
-
+}
 
 
 ///////////////🍔☕️🍽 STRETCH🍔☕️🍽////////////////////
@@ -155,10 +154,17 @@ Use the getReviewsByRating function below to do the following:
   ]
 */
 
- function getReviewByRating(/* code here */) {
-    /* code here */
+function getReviewByRating(array, rating) {
+  const outputArray = [];
+  for(let i=0;i<array.length;i++){
+    if(array[i].rating>=rating&&array[i].rating<(rating+1)){
+      outputArray.push(array[i]);
+    }
   }
+  return outputArray;
+}
 
+console.log("Stretch 1", getReviewByRating(reviews, 4));
   
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪💪   
 Use the getLongReviews function below to do the following:
@@ -173,10 +179,24 @@ Use the getLongReviews function below to do the following:
   ]
 */
 
-function getLongReviews(/* code here */) {
-    /* code here */
+function getLongReviews(array) {
+  const outputArray = [];
+  for(let i=0;i<array.length;i++){
+    let words = 1;
+    for(let j=0;j<array[i].feedback.length;j++){
+      if(array[i].feedback.charAt(j)===" "){
+        words++;
+      }
+    }
+    if(words>15){
+      outputArray.push(array[i]);
+    }
   }
-  
+  return outputArray;
+}
+
+console.log("Stretch 2", getLongReviews(reviews));
+
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪💪💪💪💪 
 This stretch goal does not use the reviews data!  You create your own object in this stretch goal.
@@ -196,11 +216,19 @@ Use the carMaker function below to do the following:
 */
 
 
-function carMaker(/* code here */) {
-    /* code here */
-    
+function carMaker(odometer) {
+  const outputObject = {
+    odometer: odometer,
+    drive: function(distance){
+      this.odometer += distance;
+      return this.odometer;
+    }
+  };
+  return outputObject;
 }
 
+const testObj = carMaker(100);
+console.log("Stretch 3", testObj.drive(150), testObj);
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
 function foo(){
